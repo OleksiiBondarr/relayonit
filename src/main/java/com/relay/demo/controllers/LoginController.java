@@ -24,12 +24,13 @@ public class LoginController {
     @GetMapping("login")
     public String loginPage(@RequestParam(value = "error", required = false) Boolean error, Model model) {
         if (error == null) {
-            return "login";
+            return "loginPage";
         }
-        if (error)
-            model.addAttribute("error", true);
-        return "login";
-
+        else {
+            if (error)
+                model.addAttribute("error", true);
+            return "loginPage";
+        }
     }
 
     @GetMapping("register")
@@ -40,7 +41,7 @@ public class LoginController {
     @PostMapping("register")
     public String CreateUser(UserPassDto userPassDto) {
         loginService.register(userPassDto);
-        return "login";
+        return "loginPage";
     }
 
 }

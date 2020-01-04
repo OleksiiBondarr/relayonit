@@ -1,6 +1,7 @@
 package com.relay.demo.services;
 
 import com.relay.demo.dto.PersonDto;
+import com.relay.demo.dto.PersonIdDto;
 import com.relay.demo.entities.Person;
 
 import java.util.List;
@@ -11,9 +12,9 @@ public interface PersonService {
 
     PersonDto getPerson(int id);
 
-    PersonDto postPerson(PersonDto personDto);
+    void postPerson(PersonIdDto personDto);
 
-    PersonDto updatePerson(PersonDto personDto);
+    void updatePerson(PersonDto personDto);
 
     void deleteUser(int id);
 }

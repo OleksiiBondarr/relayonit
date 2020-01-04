@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<form method="post" action="/updatePerson">
+    <p>
+        <label for="name" th:text="'Id' + ${person.getId()}"></label>
+        <input type="hidden" id="id" name="id" th:value="${person.getId()}">
+    <p>
+        <label for="name">name</label>
+        <input type="text" id="name" name="name" th:value="${person.getName()}"
+               th:onfocus="this.value= this.value== [[${person.getName()}]]? '':this.value; "
+               th:onblur="this.value= this.value== ''? [[${person.getName()}]]:this.value;" required autofocus>
+    </p>
+    <p>
+        <label for="surname">surname</label>
+        <input type="text" id="surname" name="surname" th:value="${person.getSurname()}"
+               th:onfocus="this.value= this.value== [[${person.getSurname()}]]? '':this.value; "
+               th:onblur="this.value= this.value== ''? [[${person.getSurname()}]]:this.value;" required autofocus>
+    </p>
+    <p>
+        <label for="phoneNumber">phoneNumber</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" th:value="${person.getPhoneNumber()}"
+               th:onfocus="this.value= this.value== [[${person.getPhoneNumber()}]]? '':this.value; "
+               th:onblur="this.value= this.value== ''? [[${person.getPhoneNumber()}]]:this.value;" required autofocus>
+    </p>
+    <p>
+        <label for="businessNumber">businessNumber</label>
+        <input type="text" id="businessNumber" name="businessNumber" th:value="${person.getBusinessNumber()}"
+               th:onfocus="this.value= this.value== [[${person.getBusinessNumber()}]]? '':this.value; "
+               th:onblur="this.value= this.value== ''? [[${person.getBusinessNumber()}]]:this.value;" required
+               autofocus>
+    </p>
+    <p>
+        <label for="email">email</label>
+        <input type="text" id="email" name="email" th:value="${person.getEmail()}"
+               th:onfocus="this.value= this.value== [[${person.getEmail()}]]? '':this.value; "
+               th:onblur="this.value= this.value== ''? [[${person.getEmail()}]]:this.value;" required autofocus>
+    </p>
+    <button type="submit">Submit update</button>
+</form>
+<form method="get" action="/people">
+    <button type="submit">Return to the list</button>
+</form>
+</body>
+</html>

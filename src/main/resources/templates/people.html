@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+</head>
+<body>
+<div>
+    <div>
+        <table id="each">
+            <tr th:each="person, index :${peopleList}">
+                <!--id name, surname, phone, business phone, email-->
+                <td th:text="${person.getId()}"></td>
+                <td th:text="${person.getName()}"></td>
+                <td th:text="${person.getSurname()}"></td>
+                <td th:text="${person.getPhoneNumber()}"></td>
+                <td th:text="${person.getBusinessNumber()}"></td>
+                <td th:text="${person.getEmail()}"></td>
+                <td>
+                    <a th:href="@{http://localhost:8080/updatePerson(id=${person.getId()})}">update</a>
+                </td>
+                <td>
+                    <a th:href="@{http://localhost:8080/deletePerson(id=${person.getId()})}">delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <form method="get" action="/createPerson">
+        <button type="submit">Create new person</button>
+    </form>
+    <form method="post" action="/logout">
+        <button type="submit">Logout</button>
+    </form>
+</div>
+</body>
+</html>
