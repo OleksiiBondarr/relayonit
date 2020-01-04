@@ -21,28 +21,28 @@ public class PersonController {
     @GetMapping("people")
     public String getAddressBook(Model model) {
         model.addAttribute("peopleList", personService.getPeople());
-        return "people";
+        return "peoplePage";
     }
-    @GetMapping("createPerson")
+    @GetMapping("create")
     public String getCreatePerson(){
-        return "createPerson";
+        return "createPage";
     }
-    @PostMapping("createPerson")
+    @PostMapping("create")
     public String createPerson(PersonIdDto personIdDto, Model model){
         personService.postPerson(personIdDto);
         return getAddressBook(model);
     }
-    @GetMapping("updatePerson")
+    @GetMapping("update")
     public String getUpdatePerson(Integer id, Model model){
         model.addAttribute("person", personService.getPerson(id));
-        return "updatePerson";
+        return "updatePage";
     }
-    @PostMapping("updatePerson")
+    @PostMapping("update")
     public String updatePerson(PersonDto personDto, Model model){
         personService.updatePerson(personDto);
         return getAddressBook(model);
     }
-    @GetMapping("deletePerson")
+    @GetMapping("delete")
     public String deletePerson(Integer id, Model model){
         personService.deleteUser(id);
         return getAddressBook(model);

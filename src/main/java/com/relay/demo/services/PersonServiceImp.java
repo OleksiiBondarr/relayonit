@@ -41,7 +41,6 @@ public class PersonServiceImp implements PersonService {
     public void postPerson(PersonIdDto personIdDto) {
         if (verifyPerson(personIdDto.getName(), personIdDto.getSurname(), personIdDto.getPhoneNumber(), personIdDto.getBusinessNumber(), personIdDto.getEmail())) {
             repository.save(new Person(personIdDto.getName(), personIdDto.getSurname(), personIdDto.getPhoneNumber(), personIdDto.getBusinessNumber(), personIdDto.getEmail()));
-            //return personDto;
         }
         else {
             throw new WrongDataException();
@@ -57,7 +56,6 @@ public class PersonServiceImp implements PersonService {
             person.setPhoneNumber(personDto.getPhoneNumber());
             person.setBusinessNumber(personDto.getBusinessNumber());
             person.setEmail(personDto.getEmail());
-            //return personDto;
         }
         else {
             throw new WrongDataException();
@@ -95,12 +93,6 @@ public class PersonServiceImp implements PersonService {
                 "@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}" +
                 "(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)])");
         Matcher emailMatcher = emailPattern.matcher(email);
-        boolean a = nameMatcher.matches();
-        boolean b =surnameMatcher.matches();
-        boolean c = phoneMatcher.matches();
-        boolean d = businessMatcher.matches();
-        boolean e = emailMatcher.matches();
-        boolean f = nameMatcher.matches() && surnameMatcher.matches() && phoneMatcher.matches() && businessMatcher.matches() && emailMatcher.matches();
         return nameMatcher.matches() && surnameMatcher.matches() && phoneMatcher.matches() && businessMatcher.matches() && emailMatcher.matches();
     }
 }

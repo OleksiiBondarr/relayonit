@@ -5,7 +5,7 @@
     <title>Update</title>
 </head>
 <body>
-<form method="post" action="/updatePerson">
+<form method="post" action="/update">
     <p>
         <label for="name" th:text="'Id' + ${person.getId()}"></label>
         <input type="hidden" id="id" name="id" th:value="${person.getId()}">

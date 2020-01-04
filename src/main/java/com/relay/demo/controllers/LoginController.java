@@ -35,7 +35,7 @@ public class LoginController {
 
     @GetMapping("register")
     public String Register() {
-        return "register";
+        return "registerPage";
     }
 
     @PostMapping("register")
