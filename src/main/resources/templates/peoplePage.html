@@ -15,6 +15,7 @@
             <th>Phone</th>
             <th>BusinessPhone</th>
             <th>Email</th>
+            <th>Image</th>
         </tr>
         <tr th:each="person, index :${peopleList}">
             <td th:text="${person.getId()}"></td>
@@ -23,6 +24,8 @@
             <td th:text="${person.getPhoneNumber()}"></td>
             <td th:text="${person.getBusinessNumber()}"></td>
             <td th:text="${person.getEmail()}"></td>
+            <td><img style="max-width: 100px; max-height: 100px; width: auto; height: auto;"
+                     th:src="@{'data:image/jpeg;base64,'+${person.getImage()}}"/></td>
             <td>
                 <a th:href="@{http://localhost:8080/update(id=${person.getId()})}">update</a>
             </td>
@@ -32,7 +35,7 @@
         </tr>
     </table>
 
-    <form method="get" action="/create" >
+    <form method="get" action="/create">
         <button type="submit" class="btn btn-primary">Create new person</button>
     </form>
     <br>

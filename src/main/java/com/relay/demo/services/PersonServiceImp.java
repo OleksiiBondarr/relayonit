@@ -2,14 +2,18 @@ package com.relay.demo.services;
 
 import com.relay.demo.dto.PersonDto;
 import com.relay.demo.dto.PersonIdDto;
+import com.relay.demo.dto.PersonImageDto;
 import com.relay.demo.entities.Person;
 import com.relay.demo.entities.User;
 import com.relay.demo.exceptions.WrongDataException;
 import com.relay.demo.repositories.PersonRepository;
 import com.relay.demo.exceptions.PersonNotFoundException;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,30 +29,30 @@ public class PersonServiceImp implements PersonService {
     }
 
     @Override
-    public List<PersonDto> getPeople() {
-        return repository.findAll().stream().map(this::convertToDto).collect(Collectors.toList());
+    public List<PersonImageDto> getPeople() {
+        return repository.findAll().stream().map(this::convertToImageDto).collect(Collectors.toList());
     }
 
 
     @Override
-    public PersonDto getPerson(int id) {
+    public PersonImageDto getPerson(int id) {
         if (repository.findById(id).isPresent())
-            return convertToDto(repository.findById(id).get());
+            return convertToImageDto(repository.findById(id).get());
         throw new PersonNotFoundException(id);
     }
 
     @Override
-    public void postPerson(PersonIdDto personIdDto) {
+    public void postPerson(PersonIdDto personIdDto, MultipartFile multipartFile) {
         if (verifyPerson(personIdDto.getName(), personIdDto.getSurname(), personIdDto.getPhoneNumber(), personIdDto.getBusinessNumber(), personIdDto.getEmail())) {
-            repository.save(new Person(personIdDto.getName(), personIdDto.getSurname(), personIdDto.getPhoneNumber(), personIdDto.getBusinessNumber(), personIdDto.getEmail()));
-        }
-        else {
+            String convertedImage = convertImage(multipartFile);
+            repository.save(new Person(personIdDto.getName(), personIdDto.getSurname(), personIdDto.getPhoneNumber(), personIdDto.getBusinessNumber(), personIdDto.getEmail(), convertedImage));
+        } else {
             throw new WrongDataException();
         }
     }
 
     @Override
-    public void updatePerson(PersonDto personDto) {
+    public void updatePerson(PersonDto personDto, MultipartFile multipartFile) {
         if (verifyPerson(personDto.getName(), personDto.getSurname(), personDto.getPhoneNumber(), personDto.getBusinessNumber(), personDto.getEmail())) {
             Person person = convertFromDto(personDto.getId());
             person.setName(personDto.getName());
@@ -56,8 +60,11 @@ public class PersonServiceImp implements PersonService {
             person.setPhoneNumber(personDto.getPhoneNumber());
             person.setBusinessNumber(personDto.getBusinessNumber());
             person.setEmail(personDto.getEmail());
-        }
-        else {
+            String convertedImage = convertImage(multipartFile);
+            if (!(convertedImage == null))
+                person.setImage(convertedImage);
+            repository.save(person);
+        } else {
             throw new WrongDataException();
         }
     }
@@ -70,8 +77,8 @@ public class PersonServiceImp implements PersonService {
             throw new PersonNotFoundException(id);
     }
 
-    private PersonDto convertToDto(Person person) {
-        return new PersonDto(person.getId(), person.getName(), person.getSurname(), person.getPhoneNumber(), person.getBusinessNumber(), person.getEmail());
+    private PersonImageDto convertToImageDto(Person person) {
+        return new PersonImageDto(person.getId(), person.getName(), person.getSurname(), person.getPhoneNumber(), person.getBusinessNumber(), person.getEmail(), person.getImage());
     }
 
     private Person convertFromDto(int id) {
@@ -95,4 +102,16 @@ public class PersonServiceImp implements PersonService {
         Matcher emailMatcher = emailPattern.matcher(email);
         return nameMatcher.matches() && surnameMatcher.matches() && phoneMatcher.matches() && businessMatcher.matches() && emailMatcher.matches();
     }
+
+    private String convertImage(MultipartFile multipartFile) {
+        if (!(multipartFile.isEmpty())) {
+            try {
+                return Base64.encodeBase64String(multipartFile.getBytes());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 }

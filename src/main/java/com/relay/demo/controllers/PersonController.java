@@ -32,7 +32,7 @@ public class PersonController {
 
     @PostMapping("create")
     public String createPerson(PersonIdDto personIdDto, @RequestParam(value = "image", required = false) MultipartFile image, Model model) {
-        personService.postPerson(personIdDto);
+        personService.postPerson(personIdDto, image);
         return getAddressBook(model);
     }
 
@@ -43,8 +43,8 @@ public class PersonController {
     }
 
     @PostMapping("update")
-    public String updatePerson(PersonDto personDto, Model model) {
-        personService.updatePerson(personDto);
+    public String updatePerson(PersonDto personDto, @RequestParam(value = "image",required = false) MultipartFile image, Model model) {
+        personService.updatePerson(personDto, image);
         return getAddressBook(model);
     }
 
