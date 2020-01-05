@@ -43,7 +43,7 @@ public class PersonController {
     }
 
     @PostMapping("update")
-    public String updatePerson(PersonDto personDto, @RequestParam(value = "image",required = false) MultipartFile image, Model model) {
+    public String updatePerson(PersonDto personDto, @RequestParam(value = "image", required = false) MultipartFile image, Model model) {
         personService.updatePerson(personDto, image);
         return getAddressBook(model);
     }

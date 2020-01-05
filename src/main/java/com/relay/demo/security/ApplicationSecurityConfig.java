@@ -14,10 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
+
     @Autowired
-    public ApplicationSecurityConfig(UserDetailsService userDetailsService){
+    public ApplicationSecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return userDetailsService;

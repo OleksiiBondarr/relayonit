@@ -6,53 +6,55 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <form method="post" action="/create" class="form-group" enctype="multipart/form-data">
-            <p>
-                <label for="name">name</label>
-                <input type="text" id="name" name="name" placeholder="name" required autofocus>
-            </p>
-            <p>
-                <label for="surname">surname</label>
-                <input type="text" id="surname" name="surname" placeholder="surname" required autofocus>
-            </p>
-            <p>
-                <label for="phoneNumber">phoneNumber</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="phoneNumber" required autofocus>
-            </p>
-            <p>
-                <label for="businessNumber">businessNumber</label>
-                <input type="text" id="businessNumber" name="businessNumber" placeholder="businessNumber" required autofocus>
-            </p>
-            <p>
-                <label for="email">email</label>
-                <input type="text" id="email" name="email" placeholder="email" required autofocus>
-            </p>
-            <p>
-                <label for="image">Select image to upload</label>
-                <input type="file" accept="image/jpeg" id="image" name="image" placeholder="image" onchange="readURL(this);">
-                <img style="max-width: 100px; max-height: 100px; width: auto; height: auto;" src="" id="img"/>
-            </p>
-            <button type="submit" class="btn btn-primary">Submit new person</button>
-        </form>
-        <form method="get" action="/people">
-            <button type="submit" class="btn btn-primary">Return to the list</button>
-        </form>
-    </div>
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#img')
-                        .attr('src', e.target.result)
-                };
+<div class="container">
+    <form method="post" action="/create" class="form-group" enctype="multipart/form-data">
+        <p>
+            <label for="name">name</label>
+            <input type="text" id="name" name="name" placeholder="name" required autofocus>
+        </p>
+        <p>
+            <label for="surname">surname</label>
+            <input type="text" id="surname" name="surname" placeholder="surname" required autofocus>
+        </p>
+        <p>
+            <label for="phoneNumber">phoneNumber</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="phoneNumber" required autofocus>
+        </p>
+        <p>
+            <label for="businessNumber">businessNumber</label>
+            <input type="text" id="businessNumber" name="businessNumber" placeholder="businessNumber" required
+                   autofocus>
+        </p>
+        <p>
+            <label for="email">email</label>
+            <input type="text" id="email" name="email" placeholder="email" required autofocus>
+        </p>
+        <p>
+            <label for="image">Select image to upload</label>
+            <input type="file" accept="image/jpeg" id="image" name="image" placeholder="image"
+                   onchange="readURL(this);">
+            <img style="max-width: 100px; max-height: 100px; width: auto; height: auto;" src="" id="img"/>
+        </p>
+        <button type="submit" class="btn btn-primary">Submit new person</button>
+    </form>
+    <form method="get" action="/people">
+        <button type="submit" class="btn btn-primary">Return to the list</button>
+    </form>
+</div>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img')
+                    .attr('src', e.target.result)
+            };
 
-                reader.readAsDataURL(input.files[0]);
-            }
+            reader.readAsDataURL(input.files[0]);
         }
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

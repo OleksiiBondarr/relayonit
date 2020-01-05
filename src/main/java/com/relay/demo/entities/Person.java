@@ -21,9 +21,11 @@ public class Person {
     private String email;
     @Lob
     private String image = "";
+
     public Person() {
 
     }
+
     public Person(String name, String surname, String phoneNumber, String businessNumber, String email) {
         this.name = name;
         this.surname = surname;
@@ -32,6 +34,7 @@ public class Person {
         this.email = email;
 
     }
+
     public Person(String name, String surname, String phoneNumber, String businessNumber, String email, String image) {
         this(name, surname, phoneNumber, businessNumber, email);
         this.image = image;

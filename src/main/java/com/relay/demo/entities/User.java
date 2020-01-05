@@ -4,13 +4,16 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
+
 @Entity
 @Data
 public class User {
     @Id
     private String login;
     private String password;
+
     public User() {
     }
 
