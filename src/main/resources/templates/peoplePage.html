@@ -3,35 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>People</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-<div>
-    <div>
-        <table id="each">
-            <tr th:each="person, index :${peopleList}">
-                <!--id name, surname, phone, business phone, email-->
-                <td th:text="${person.getId()}"></td>
-                <td th:text="${person.getName()}"></td>
-                <td th:text="${person.getSurname()}"></td>
-                <td th:text="${person.getPhoneNumber()}"></td>
-                <td th:text="${person.getBusinessNumber()}"></td>
-                <td th:text="${person.getEmail()}"></td>
-                <td>
-                    <a th:href="@{http://localhost:8080/updatePerson(id=${person.getId()})}">update</a>
-                </td>
-                <td>
-                    <a th:href="@{http://localhost:8080/deletePerson(id=${person.getId()})}">delete</a>
-                </td>
-            </tr>
-        </table>
-    </div>
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone</th>
+            <th>BusinessPhone</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="person, index :${peopleList}">
+            <td th:text="${person.getId()}"></td>
+            <td th:text="${person.getName()}"></td>
+            <td th:text="${person.getSurname()}"></td>
+            <td th:text="${person.getPhoneNumber()}"></td>
+            <td th:text="${person.getBusinessNumber()}"></td>
+            <td th:text="${person.getEmail()}"></td>
+            <td>
+                <a th:href="@{http://localhost:8080/update(id=${person.getId()})}">update</a>
+            </td>
+            <td>
+                <a th:href="@{http://localhost:8080/delete(id=${person.getId()})}">delete</a>
+            </td>
+        </tr>
+    </table>
 
-    <form method="get" action="/create">
-        <button type="submit">Create new person</button>
+    <form method="get" action="/create" >
+        <button type="submit" class="btn btn-primary">Create new person</button>
     </form>
+    <br>
     <form method="post" action="/logout">
-        <button type="submit">Logout</button>
+        <button type="submit" class="btn btn-primary">Logout</button>
     </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

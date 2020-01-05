@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class LoginController {
 
     private final LoginService loginService;
@@ -25,8 +25,7 @@ public class LoginController {
     public String loginPage(@RequestParam(value = "error", required = false) Boolean error, Model model) {
         if (error == null) {
             return "loginPage";
-        }
-        else {
+        } else {
             if (error)
                 model.addAttribute("error", true);
             return "loginPage";

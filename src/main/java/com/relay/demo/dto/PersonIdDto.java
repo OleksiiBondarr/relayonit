@@ -1,8 +1,10 @@
 package com.relay.demo.dto;
 
-        import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class PersonIdDto {
     private String name;
     private String surname;
@@ -12,13 +14,5 @@ public class PersonIdDto {
 
     public PersonIdDto() {
 
-    }
-
-    public PersonIdDto( String name, String surname, String phoneNumber, String businessNumber, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.businessNumber = businessNumber;
-        this.email = email;
     }
 }

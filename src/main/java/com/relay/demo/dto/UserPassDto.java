@@ -1,17 +1,16 @@
 package com.relay.demo.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class UserPassDto {
     private String login;
     private String password;
+
     public UserPassDto() {
     }
 
-    public UserPassDto(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
 }
