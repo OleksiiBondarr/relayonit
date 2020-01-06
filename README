@@ -1,0 +1,8 @@
+http://localhost:8080/login - basic page in order to force user to login
+http://localhost:8080/register - page for new user creation
+Pages below are not available without authentication:
+http://localhost:8080/people - page that shows table with people from addressBook
+http://localhost:8080/update?id=1 - page for updating selected person(previous data is provided). If new image wasn't
+                                    selected - the current one will not be changed
+http://localhost:8080/delete?id=1 - page for deleting selected person
+http://localhost:8080/create - page for creating new person. Verification for the fields is provided. Image field is not obligatory

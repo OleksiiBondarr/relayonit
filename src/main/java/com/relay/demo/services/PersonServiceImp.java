@@ -4,7 +4,6 @@ import com.relay.demo.dto.PersonDto;
 import com.relay.demo.dto.PersonIdDto;
 import com.relay.demo.dto.PersonImageDto;
 import com.relay.demo.entities.Person;
-import com.relay.demo.entities.User;
 import com.relay.demo.exceptions.WrongDataException;
 import com.relay.demo.repositories.PersonRepository;
 import com.relay.demo.exceptions.PersonNotFoundException;

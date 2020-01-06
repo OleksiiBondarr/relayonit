@@ -14,12 +14,14 @@ public class ExceptionsAdvice {
     public String userAlreadyExistHandler(UserAlreadyExistException ex) {
         return ex.getMessage();
     }
+
     @ResponseBody
     @ExceptionHandler(PersonNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String personNotFoundHandler(PersonNotFoundException ex) {
         return ex.getMessage();
     }
+
     @ResponseBody
     @ExceptionHandler(WrongDataException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
